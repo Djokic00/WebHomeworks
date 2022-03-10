@@ -42,9 +42,9 @@ public class Main {
             studentService.schedule(student, timeOfDefending, TimeUnit.MILLISECONDS);
         }
 
-        Timer timer = new Timer();
-        Thread beginning = new Thread(timer);
+        Thread beginning = new Thread();
         beginning.start();
+        Thread.sleep(15000);
         beginning.join();
 
         isFinished.set(true);
