@@ -82,7 +82,7 @@ public class Student implements Runnable {
     }
 
     private void assistant() {
-        if (!isDone && Main.isFinished.get()) {
+        if (!isDone && !Main.isFinished.get()) {
             try {
                 assistant.getSemaphore().acquire();
                 beginningOfDefending = System.currentTimeMillis();
@@ -102,6 +102,7 @@ public class Student implements Runnable {
                     return;
                 }
                 mark = assistant.markStudent();
+                nameOfExaminer = assistant.getName();
                 isDone = true;
                 assistant.getSemaphore().release();
             } catch (InterruptedException e) {

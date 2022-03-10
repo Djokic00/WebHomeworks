@@ -44,7 +44,7 @@ public class Main {
 
         Thread beginning = new Thread();
         beginning.start();
-        Thread.sleep(15000);
+        Thread.sleep(5000);
         beginning.join();
 
         isFinished.set(true);
