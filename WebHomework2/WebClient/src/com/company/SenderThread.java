@@ -14,6 +14,7 @@ public class SenderThread implements Runnable {
     @Override
     public void run() {
         while (true) {
+            if (Thread.currentThread().isInterrupted()) break;
             String message = scanner.nextLine();
             outputFromServer.println(message);
             if (message.equalsIgnoreCase("exit")) {
