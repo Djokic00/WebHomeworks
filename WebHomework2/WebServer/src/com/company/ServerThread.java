@@ -12,10 +12,10 @@ public class ServerThread implements Runnable {
     private Socket socket;
     private BufferedReader inputFromClient = null;
     private PrintWriter outputToClient = null;
-    private List<String> messageHistory = new CopyOnWriteArrayList<>();
     public static List<ServerThread> listOfClients = new CopyOnWriteArrayList<>();
     private HashSet<String> forbiddenWords = new HashSet<>();
     private String message = "";
+    private String username;
 
     public ServerThread(Socket socket) {
         this.socket = socket;
@@ -24,51 +24,80 @@ public class ServerThread implements Runnable {
 
     @Override
     public void run() {
-        try {
-            inputFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            outputToClient = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-            outputToClient.println("Enter your username");
-            String username = inputFromClient.readLine();
-            if (Main.database.contains(username)) {
-                System.out.println("Client is rejected, username already exists");
-                outputToClient.println("Client with that username already exists");
+        while (true) {
+            try {
+                inputFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                outputToClient = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
+                outputToClient.println("Enter your username");
+                username = inputFromClient.readLine();
+                if (Main.database.contains(username)) {
+                    System.out.println("Client is rejected, username already exists");
+                    outputToClient.println("Client with that username already exists");
+                } else {
+                    Main.database.add(username);
+                    System.out.println("Client " + username + " is connected");
+                    outputToClient.println("Welcome");
+                    listOfClients.add(this);
+                    listOfClients.iterator().forEachRemaining((ServerThread serverThread) -> {
+                        if (!serverThread.equals(this)) {
+                            serverThread.outputToClient.println("New user " + username + " joined");
+                        }
+                    });
+                    Main.messageHistory.iterator().forEachRemaining((Message message) -> {
+                        this.outputToClient.println(message);
+                    });
+                    break;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            else {
-                Main.database.add(username);
-                System.out.println("Client " + username + " is connected");
-                outputToClient.println("Welcome");
-                listOfClients.add(this);
-                listOfClients.iterator().forEachRemaining((ServerThread serverThread) -> {
-                    if (!serverThread.equals(this)) {
-                        serverThread.outputToClient.println("New user " + username + " joined");
-                    }
-                });
-            }
-
-            while (true) {
+        }
+        while (true) {
+            try {
                 message = inputFromClient.readLine();
-                if (message.equals("ListHistory")) {
-                    outputToClient.println(messageHistory.toString());
+                if (message.equals("exit")) {
+                    listOfClients.iterator().forEachRemaining((ServerThread serverThread) ->{
+                        if (!serverThread.equals(this)) {
+                            serverThread.outputToClient.println("User " + username + " has left the chat.");
+                        }
+                        else {
+                            serverThread.outputToClient.println("Status code: Exit");
+                            System.out.println("User " + username + " is disconnected");
+                        }
+                    });
+                    listOfClients.remove(this);
+                    Main.database.remove(username);
+                    socket.close();
+                    inputFromClient.close();
+                    outputToClient.close();
+                    break;
+                }
+                else if (message.equals("ListHistory")) {
+                    outputToClient.println(Main.messageHistory.toString());
                 }
                 else
                 {
                     changeWordIfForbidden(message);
-                    messageHistory.add(message);
-                    if (messageHistory.size() > 100) messageHistory.remove(0);
+                    if (Main.messageHistory.size() > 100) Main.messageHistory.remove(0);
                     Main.database.add(username);
                     Message messageToClient = new Message(message, username, time());
+                    Main.messageHistory.add(messageToClient);
                     outputToClient.println(messageToClient);
+                    listOfClients.iterator().forEachRemaining((ServerThread serverThread) -> {
+                        if (!serverThread.equals(this)) {
+                            serverThread.outputToClient.println(messageToClient);
+                        }
+                    });
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     @Override
     public String toString() {
-        return "messageHistory = " + messageHistory;
+        return "messageHistory = " + Main.messageHistory;
     }
 
     private void setForbiddenWords() {
@@ -91,7 +120,6 @@ public class ServerThread implements Runnable {
             wordCounter++;
             if (wordCounter < splitWord.length) stringBuilder.append(" ");
         }
-        System.out.println(stringBuilder);
         setMessage(stringBuilder.toString());
     }
 

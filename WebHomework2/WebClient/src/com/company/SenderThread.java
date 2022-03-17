@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class SenderThread implements Runnable {
     private PrintWriter outputFromServer;
-    //private Thread sender;
     private Scanner scanner = new Scanner(System.in);
 
     public SenderThread(PrintWriter outputFromServer) {
@@ -18,7 +17,6 @@ public class SenderThread implements Runnable {
             String message = scanner.nextLine();
             outputFromServer.println(message);
             if (message.equalsIgnoreCase("exit")) {
-                outputFromServer.close();
                 break;
             }
         }

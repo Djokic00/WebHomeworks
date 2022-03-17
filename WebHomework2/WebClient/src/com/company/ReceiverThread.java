@@ -16,8 +16,8 @@ public class ReceiverThread implements Runnable {
         while (true) {
             try {
                 String message = inputFromServer.readLine();
-                if (message.equals("ListHistory")) {
-                    System.out.println(message);
+                if (message.equals("Status code: Exit")) {
+                    break;
                 }
                 else {
                     System.out.println(message);

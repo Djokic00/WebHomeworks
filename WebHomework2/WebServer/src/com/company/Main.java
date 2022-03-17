@@ -9,6 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Main {
     public static final int PORT = 8000;
     public static List<String> database = new CopyOnWriteArrayList<>();
+    public static List<Message> messageHistory = new CopyOnWriteArrayList<>();
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(PORT);
