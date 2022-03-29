@@ -35,8 +35,8 @@ public class Main {
         ScheduledExecutorService studentService = Executors.newScheduledThreadPool(n);
 
         for (int i = 0; i < n; i++) {
-            long defending = (new Random()).nextInt(500) + 500;
-            long timeOfDefending = (new Random()).nextInt(1000);
+            long defending = (new Random()).nextInt(500) + 500; // koliko dugo brani
+            long timeOfDefending = (new Random()).nextInt(1000); // kad pocinje sa odbranom
             String studentName = "Student " + (i + 1);
             Student student = new Student(studentName, assistant, professor, defending);
             studentService.schedule(student, timeOfDefending, TimeUnit.MILLISECONDS);
