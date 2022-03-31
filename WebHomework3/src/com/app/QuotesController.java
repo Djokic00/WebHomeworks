@@ -14,8 +14,8 @@ import java.util.Map;
 public class QuotesController extends Controller {
     private Request request;
     private HashMap<String, String> quotes;
-    private BufferedReader inputFromClient;
-    private PrintWriter outputToClient;
+    private BufferedReader inputFromServer;
+    private PrintWriter outputToServer;
     Gson gson = new Gson();
     String requestLine;
 
@@ -23,8 +23,6 @@ public class QuotesController extends Controller {
         super(request);
         this.request = request;
         quotes = Quotes.getInstance().getQuotes();
-        System.out.println("JEBEM TI SEME");
-        System.out.println(quotes.keySet() + " " + quotes.values());
     }
 
     @Override
@@ -41,23 +39,22 @@ public class QuotesController extends Controller {
 
         for (Map.Entry<String, String> map : quotes.entrySet()) {
             htmlBody += "<br><br>" + map.getKey() + " " + '"' + map.getValue() + '"' + "<br>";
-            System.out.println(map.getKey() + " " + map.getValue());
         }
         htmlBody += "</form>";
 
         try {
             Socket socket = new Socket("localhost", 8081);
-            inputFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            outputToClient = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            inputFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            outputToServer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 
-            outputToClient.println("GET /qod HTTP/1.1\n" + "Accept: application/json\r\n\r\n");
-            requestLine = inputFromClient.readLine();
+            outputToServer.println("GET /qod HTTP/1.1\n" + "Accept: application/json\r\n\r\n");
+            requestLine = inputFromServer.readLine();
             do {
                 System.out.println(requestLine);
-                requestLine = inputFromClient.readLine();
+                requestLine = inputFromServer.readLine();
             } while (!requestLine.trim().equals(""));
 
-            String quoteOfTheDay = gson.fromJson(inputFromClient.readLine(), String.class);
+            String quoteOfTheDay = gson.fromJson(inputFromServer.readLine(), String.class);
             htmlBody += "<h1>Quote of the Day</h1>\n" +"<h2>" + quoteOfTheDay + "</h2>";
 
         } catch (IOException e) {
@@ -72,8 +69,6 @@ public class QuotesController extends Controller {
         String author = request.getContent().get("author");
         String quote = request.getContent().get("quote");
         quotes.put(author, quote);
-        System.out.println("AAAAAAAAAAAAAAAAA");
-        System.out.println(quotes.keySet() + " " + quotes.values());
         return new RedirectResponse("/quotes");
     }
 

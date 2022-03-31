@@ -13,7 +13,7 @@ public class ServerThread implements Runnable {
 
     private Socket socket;
     private BufferedReader inputFromClient;
-    private PrintWriter outputFromClient;
+    private PrintWriter outputToClient;
 
     public ServerThread(Socket socket) {
         this.socket = socket;
@@ -23,19 +23,16 @@ public class ServerThread implements Runnable {
     public void run() {
         try {
             inputFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            outputFromClient = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            outputToClient = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        String requestLine = null;
         try {
-            requestLine = inputFromClient.readLine();
+            String requestLine = inputFromClient.readLine();
             StringTokenizer stringTokenizer = new StringTokenizer(requestLine);
             String method = stringTokenizer.nextToken();
             String path = stringTokenizer.nextToken();
-
-            System.out.println("\nHTTP ZAHTEV KLIJENTA:\n");
             do {
                 System.out.println(requestLine);
                 requestLine = inputFromClient.readLine();
@@ -48,13 +45,13 @@ public class ServerThread implements Runnable {
             RequestHandler requestHandler = new RequestHandler();
             Response response = requestHandler.handle(request);
 
-            System.out.println("\nHTTP odgovor:\n");
+            System.out.println("\nHTTP response:\n");
             System.out.println(response.sendResponseString());
 
-            outputFromClient.println(response.sendResponseString());
+            outputToClient.println(response.sendResponseString());
 
             inputFromClient.close();
-            outputFromClient.close();
+            outputToClient.close();
             socket.close();
 
         } catch (Exception ex) {
