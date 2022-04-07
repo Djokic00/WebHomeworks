@@ -69,7 +69,6 @@ public class Orders extends HttpServlet {
         for (Map.Entry<String, List<Meal>> m: map.entrySet()){
             getServletContext().setAttribute(m.getKey(), null);
         }
-        map = new HashMap<>();
         getServletContext().setAttribute("map", map);
     }
 
