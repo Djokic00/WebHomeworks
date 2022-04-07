@@ -20,7 +20,7 @@ public class HelloServlet extends HttpServlet {
         days.add("Thursday");
         days.add("Friday");
         getServletContext().setAttribute("days", days);
-        for(String day: days) {
+        for (String day: days) {
             try {
                 Scanner scanner = new Scanner(new File("/home/aleksa/Documents/JavaProjects/WebHomework/WebHomework4/src/database/" + day + ".txt"));
                 while (scanner.hasNextLine()) {
@@ -82,18 +82,20 @@ public class HelloServlet extends HttpServlet {
         getServletContext().setAttribute(request.getSession().getId(),true);
         List<Meal> list = new ArrayList<>();
         for (String day: days) {
-            String meal = request.getParameter(day);
+            String meal = request.getParameter(day); // vraca izabrani obrok za odredjeni dan
             System.out.println(meal);
-            Meal o = returnMeal(day, meal);
-            o.setOrderNumber(o.getOrderNumber()  + 1);
-            list.add(o);
+            Meal m = returnMeal(day, meal);
+            m.setOrderNumber(m.getOrderNumber()  + 1);
+            synchronized (this) {
+                list.add(m);
+            }
         }
         map.put(request.getSession().getId(), list);
         getServletContext().setAttribute("map", map);
     }
 
     private Meal returnMeal(String day, String meal){
-        for (Meal m : saveMeal){
+        for (Meal m : saveMeal) {
             if (m.getDay().equals(day) && m.getFood().equals(meal))
                 return m;
         }

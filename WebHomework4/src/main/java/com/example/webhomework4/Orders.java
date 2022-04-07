@@ -1,6 +1,6 @@
 package com.example.webhomework4;
 
-import javax.servlet.ServletException;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,10 +36,10 @@ public class Orders extends HttpServlet {
                 out.println("<table style=\"width:100 % \">");
                 out.println("<tr> <th>#</th> <th>Meal</th> <th>Quantity</th> </tr>");
                 int j = 0;
-                for (Meal listOfMeal : listOfMeals) {
-                    if (listOfMeal.getDay().equals(day)) {
+                for (Meal meal : listOfMeals) {
+                    if (meal.getDay().equals(day)) {
                         j++;
-                        out.println("<tr> <th>" + j + "</th> <th>" + listOfMeal.getFood() + "</th> <th>" + listOfMeal.getOrderNumber() + "</th> </tr>");
+                        out.println("<tr> <th>" + j + "</th> <th>" + meal.getFood() + "</th> <th>" + meal.getOrderNumber() + "</th> </tr>");
                     }
                 }
                 out.println("<style>\n" +
@@ -51,7 +51,7 @@ public class Orders extends HttpServlet {
             }
 
             out.println("--------------------------<br>");
-            out.println("<br><input type=\"submit\" name\"submit\" value\"Clear;\"/></form>");
+            out.println("<br><input type=\"submit\" name\"submit\" value\"Clear\"/></form>");
             out.println("</body></html>");
         }
         else {
@@ -60,7 +60,7 @@ public class Orders extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         List<Meal> listOfMeals = (List<Meal>) getServletContext().getAttribute("allMeals");
         for (Meal o: listOfMeals) {
             o.setOrderNumber(0);
@@ -71,7 +71,6 @@ public class Orders extends HttpServlet {
         }
         map = new HashMap<>();
         getServletContext().setAttribute("map", map);
-
     }
 
     @Override
