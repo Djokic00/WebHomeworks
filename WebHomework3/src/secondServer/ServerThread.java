@@ -38,9 +38,9 @@ public class ServerThread implements Runnable {
                 requestLine = inputFromClient.readLine();
             } while (!requestLine.trim().equals(""));
 
-            HashMap<String,String> ubaci = new HashMap<>();
+            HashMap<String,String> content = new HashMap<>();
 
-            Request request = new Request(HttpMethods.valueOf(method), path, ubaci);
+            Request request = new Request(HttpMethods.valueOf(method), path, content);
 
             RequestHandler requestHandler = new RequestHandler();
             Response response = requestHandler.handle(request);
