@@ -6,8 +6,6 @@
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta property="og:image" content="https://hakaton.raf.edu.rs/assets/images/hackathon_sharing_1200x630.png">
-<%--<!-- Document title -->--%>
-<%--<title>Raf Hakaton</title>--%>
 <!-- favicon -->
 <link rel="icon" type="image/png" sizes="32x32" href="https://hakaton.raf.edu.rs/assets/images/favicon/raf_favicon.ico">
 

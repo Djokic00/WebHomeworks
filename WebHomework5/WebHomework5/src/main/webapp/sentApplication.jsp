@@ -7,8 +7,6 @@
     <meta charset="UTF-8">
     <title>Hakaton</title>
     <%@include file="style.jsp"%>
-
-
 </head>
 <body>
 

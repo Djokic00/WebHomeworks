@@ -1,5 +1,4 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta property="og:image" content="https://hakaton.raf.edu.rs/assets/images/hackathon_sharing_1200x630.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://hakaton.raf.edu.rs/assets/images/favicon/raf_favicon.ico">
 <!-- Plugins Stylesheets -->

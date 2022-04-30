@@ -117,8 +117,5 @@ page - instanca beana je dostupna samo jednoj jsp stranici --%>
   </div>
 </div>
 
-<!-- Main JS-->
-<script src="js/global.js"></script>
-
 </body>
 </html>

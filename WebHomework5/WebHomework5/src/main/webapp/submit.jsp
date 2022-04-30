@@ -12,17 +12,6 @@
 
 </head>
 <body>
-
-<%--<%@ include file="navbar.jsp" %>--%>
-
-<%--Kreiranje instance bean-a. Scope:
-application - instanca beana je dostupna celoj web aplikaciji
-session - instanca beana se kreira za svaku novu sesiju
-request - instanca beana se kreira kada stigne novi zahtev i dostupna je samo na nivou tog zahteva
-sto znaci da ce biti dostupan i drugim stranicama, na primer ako uradimo
- <jsp:forward page="stranica.jsp"/> ili <jsp:include page="stranica.jsp"/>
-page - instanca beana je dostupna samo jednoj jsp stranici --%>
-
 <jsp:useBean id="input" scope="session" class="com.example.webhomework5.Form" />
 
 <jsp:setProperty name="input" property="name" param="name" />
@@ -54,14 +43,14 @@ page - instanca beana je dostupna samo jednoj jsp stranici --%>
 
 <%
       fileWriter.write("--------------------------------------\n");
-      fileWriter.write("Haker " + input.getNameMember1() + "\n");
+      fileWriter.write("Ime " + input.getNameMember1() + "\n");
       fileWriter.write("Prezime " + input.getSurnameMember1() + "\n");
       fileWriter.write("Email " + input.getEmailMember1() + "\n");
       fileWriter.write("Linkedin " + input.getLinkedin1() + "\n");
 
       if (input.getNameMember2() != null) {
           fileWriter.write("--------------------------------------\n");
-          fileWriter.write("Haker " + input.getNameMember2() + "\n");
+          fileWriter.write("Ime " + input.getNameMember2() + "\n");
           fileWriter.write("Prezime " + input.getSurnameMember2() + "\n");
           fileWriter.write("Email " + input.getEmailMember2() + "\n");
           fileWriter.write("Linkedin " + input.getLinkedin2() + "\n");

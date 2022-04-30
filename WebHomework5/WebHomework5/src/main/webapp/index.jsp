@@ -6,22 +6,16 @@
     <meta charset="UTF-8">
     <title>Raf Hakaton</title>
     <%@include file="styles.jsp"%>
-
 </head>
 <body>
 <!-- Header Start -->
 <header class="position-fixed w-100">
     <div class="container">
         <nav class="navbar navbar-expand-md navbar-light">
-            <a class="navbar-brand" style="padding: 0" href="index.jsp"><img style="max-width: 155px" src="https://hakaton.raf.edu.rs/assets/images/Hakaton_logo.png" alt="RAF Hakaton"></a>
-            <div class="group d-flex align-items-center">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="index.jsp">Početna</a></li>
                     <li class="nav-item"><a class="nav-link" href="#oTakmicenju">O takmičenju</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#nagrade">Nagrade</a></li>
                     <li class="nav-item"><a class="nav-link" href="#partneri">Partneri</a></li>
                 </ul>
             </div>
@@ -110,48 +104,6 @@
         </div>
     </div>
 </section>
-<!-- Services End -->
-<section class="pricing-table" id="nagrade">
-    <div class="container">
-        <div class="title text-center">
-            <h1 class="title-blue">Nagrade</h1>
-        </div>
-        <div class="row no-gutters">
-            <div class="col-md-4 order-2 order-md-1 reward-custom-padding">
-                <div class="single-pricing text-center second-place">
-                    <span>2.</span>
-                    <h2 class="mb-3">Drugo mesto</h2>
-                    <img src="https://hakaton.raf.edu.rs/assets/images/crypto/ethereum_cricle.png" alt="Ethereum" class="img-fluid crypto-img">
-                    <p class="price mt-3" style="line-height:0.8em;">50 000</p>
-                    <p class="currency " style="line-height:0.8em;">dinara</p>
-                    <p style="font-size:1.3em;" class="mt-5">U Ethereum kriptovaluti</p>
-                </div>
-            </div>
-            <div class="col-md-4 order-1 order-md-2 reward-custom-padding">
-                <div class="single-pricing text-center first-place">
-                    <span>1.</span>
-                    <h2 class="mb-3">Prvo mesto</h2>
-                    <img src="https://hakaton.raf.edu.rs/assets/images/crypto/bitcoin_circle.png" alt="Bitcoin" class="img-fluid crypto-img">
-                    <p class="price mt-3" style="line-height:0.8em;">100 000</p>
-                    <p class="currency " style="line-height:0.8em;">dinara</p>
-                    <p style="font-size:1.3em;" class="mt-5">U Bitcoin kriptovaluti</p>
-                </div>
-            </div>
-            <div class="col-md-4 order-3 order-md-3 reward-custom-padding">
-                <div class="single-pricing text-center third-place"
-                     data-aos-duration="600">
-                    <span>3.</span>
-                    <h2 class="mb-3">Treće mesto</h2>
-                    <img src="https://hakaton.raf.edu.rs/assets/images/crypto/ethereum_cricle.png" alt="Ethereum" class="img-fluid crypto-img">
-                    <p class="price mt-3" style="line-height:0.8em;">25 000</p>
-                    <p class="currency " style="line-height:0.8em;">dinara</p>
-                    <p style="font-size:1.3em;" class="mt-5">U Ethereum kriptovaluti</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="recent-posts sponsors" id="partneri">
     <div class="container">
         <div class="title text-center">
@@ -195,7 +147,6 @@
                 <div class="col-6 col-xl-3">
                     <div class="single-widget contact-widget">
                         <div class="media">
-                            <i class="fa fa-map-marker text-white"></i>
                             <div class="media-body ml-3">
                                 <h6>Mesto održavanja</h6>
                                 <a href="https://goo.gl/maps/ycUBttET9eLXqLx29" target="_blank" class="footer-link">Računarski
@@ -208,7 +159,6 @@
                 <div class="col-6 col-xl-3">
                     <div class="single-widget contact-widget">
                         <div class="media">
-                            <i class="fa fa-envelope-o text-white"></i>
                             <div class="media-body ml-3">
                                 <h6>Imate pitanja?</h6>
                                 <a href="mailto:hakaton@raf.rs" class="footer-link">hakaton@raf.rs</a>
@@ -219,7 +169,6 @@
                 <div class="col-6 col-xl-3">
                     <div class="single-widget contact-widget">
                         <div class="media">
-                            <i class="fa fa-phone text-white"></i>
                             <div class="media-body ml-3">
                                 <h6>Pozovite nas</h6>
                                 <a href="tel:011 33 48 079" class="footer-link"> 011 33 48 079</a>
@@ -239,7 +188,6 @@
     </div>
 </footer>
 
-<script src="https://hakaton.raf.edu.rs/assets/js/jquery-3.3.1.js?id=1_12"></script>
 <script src="https://hakaton.raf.edu.rs/assets/js/bootstrap.bundle.js?id=1_12"></script>
 <script src="https://hakaton.raf.edu.rs/assets/js/aos.js?id=1_12"></script>
 <script src="https://hakaton.raf.edu.rs/assets/js/matrix.js?id=1_12"></script>
