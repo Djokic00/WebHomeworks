@@ -17,20 +17,18 @@ public class NewPostServlet extends HttpServlet {
 
     private static int counter = 4;
 
-    private INewsRepository quoteRepository;
+    private INewsRepository newsRepository;
 
     @Override
     public void init() throws ServletException {
-        this.quoteRepository = new InMemoryNewsRepository();
+        this.newsRepository = new InMemoryNewsRepository();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getPathInfo().substring(1));
-        News post = this.quoteRepository.find(id);
+        News post = this.newsRepository.find(id);
         req.setAttribute("post", post);
-
-
         req.getRequestDispatcher("/single-post.jsp").forward(req, resp);
     }
 
@@ -40,7 +38,7 @@ public class NewPostServlet extends HttpServlet {
         String title = req.getParameter("title");
         String text = req.getParameter("text");
         News news = new News(counter++, author, title, text, new ArrayList<>(), java.time.LocalDate.now());
-        this.quoteRepository.insert(news);
+        this.newsRepository.insert(news);
         resp.sendRedirect("/posts");
     }
 }
