@@ -39,6 +39,6 @@ public class NewPostServlet extends HttpServlet {
         String text = req.getParameter("text");
         News news = new News(counter++, author, title, text, new ArrayList<>(), java.time.LocalDate.now());
         this.newsRepository.insert(news);
-        resp.sendRedirect("/posts");
+        resp.sendRedirect(getServletContext().getContextPath() + "/posts");
     }
 }

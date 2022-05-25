@@ -42,7 +42,7 @@ public class SinglePostServlet extends HttpServlet {
         comments.add(newComment);
         post.setComments(comments);
         this.subjectRepository.update(post);
-        resp.sendRedirect("/posts/"+post.getId());
+        resp.sendRedirect(getServletContext().getContextPath() + "/posts/" + post.getId());
     }
 
 }
