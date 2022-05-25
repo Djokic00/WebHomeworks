@@ -41,11 +41,6 @@ public class InMemoryNewsRepository implements INewsRepository{
     }
 
     @Override
-    public List<News> allPosts() {
-        return null;
-    }
-
-    @Override
     public News find(int id) {
         for(News n: newsMap) {
             if (n.getId() == id) {
