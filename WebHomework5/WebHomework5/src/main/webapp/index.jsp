@@ -63,7 +63,6 @@
 <section class="services" id="oTakmicenju">
     <div class="container">
         <div class="title text-center">
-            <h6>Ukratko</h6>
             <h1 class="title-blue">O takmičenju</h1>
         </div>
         <div class="container">

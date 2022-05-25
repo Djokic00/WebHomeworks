@@ -19,7 +19,7 @@
     <br>
     <div class="pregledanje">
         <h3 style="font-size: 30px;">Nas tim pregleda prijavu i  obavestice vas o konacnoj
-            odluci do 11. decembra na email: <br><%=input.getEmail()%> </h3>
+            odluci do juna na email: <br><%=input.getEmail()%> </h3>
     </div>
 </div>
 
