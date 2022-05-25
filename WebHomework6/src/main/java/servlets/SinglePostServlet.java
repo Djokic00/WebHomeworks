@@ -44,5 +44,4 @@ public class SinglePostServlet extends HttpServlet {
         this.subjectRepository.update(post);
         resp.sendRedirect(getServletContext().getContextPath() + "/posts/" + post.getId());
     }
-
 }
