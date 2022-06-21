@@ -13,4 +13,4 @@ Homework assignments for "Web Programming" course at the Faculty of Computing (R
 
 [Homework 6](https://github.com/Djokic00/WebHomeworks/blob/main/WebHomework6/Web%20Doma%C4%87i%206.pdf) - JSP and JSTL
 
-[Homework 7](https://github.com/Djokic00/WebHomeworks/tree/main/WebHomework7) - RESTfull API using JAX-RS
+[Homework 7](https://github.com/Djokic00/WebHomeworks/blob/main/WebHomework7/Web%20Doma%C4%87i%207.pdf) - RESTfull API using JAX-RS
